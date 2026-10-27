@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="3GPP 5G-A 感知（ISAC）架構研究 TR 23.700-14 的白話圖解：39 種設計、8 個爭論、從 2025 年 5 月到 2026 年 2 月怎麼收斂。附專業版時序圖、演進圖與六份分析報告。獨立分析，非 3GPP 出版品，不是法律意見。">
+<title>ISAC 感知標準演進</title>
+<style>
+.site-nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.site-nav .in{max-width:760px;margin:0 auto;padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;font-size:14px}
+.site-nav .brand{font-weight:600;color:var(--ink);text-decoration:none;margin-right:auto}
+.site-nav a{color:var(--ink-2);text-decoration:none}
+.site-nav a:hover,.site-nav a[aria-current]{color:var(--blue)}
+.site-foot{border-top:1px solid var(--line);margin-top:40px;padding-top:16px;font-size:13px;color:var(--ink-3);line-height:1.7}
+.site-foot p{margin:6px 0}
+.reports li{margin:6px 0}
+</style>
+<style>
+:root{--bg:#f9f9f7;--surface:#ffffff;--surface-2:#f3f2ee;--ink:#0b0b0b;--ink-2:#52514e;--ink-3:#898781;--line:rgba(11,11,11,.12);--blue:#2a78d6;--blue-soft:#cde2fb;--aqua:#1baf7a;--yellow:#eda100;--orange:#eb6834;--gray:#b4b2a9;--on:#ffffff}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d0d0d;--surface:#1a1a19;--surface-2:#232321;--ink:#f0efec;--ink-2:#c3c2b7;--ink-3:#898781;--line:rgba(255,255,255,.12);--blue:#3987e5;--blue-soft:#1c3a63;--aqua:#199e70;--yellow:#c98500;--orange:#d95926;--gray:#5f5e5a;--on:#ffffff}}
+:root[data-theme=dark]{--bg:#0d0d0d;--surface:#1a1a19;--surface-2:#232321;--ink:#f0efec;--ink-2:#c3c2b7;--ink-3:#898781;--line:rgba(255,255,255,.12);--blue:#3987e5;--blue-soft:#1c3a63;--aqua:#199e70;--yellow:#c98500;--orange:#d95926;--gray:#5f5e5a;--on:#ffffff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.7;font-size:16px}
+.wrap{max-width:760px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:24px;font-weight:600;line-height:1.35;margin:0 0 6px}
+h2{font-size:19px;font-weight:600;margin:40px 0 10px}
+p{margin:8px 0}
+.sub{color:var(--ink-2);font-size:14px}
+.muted{color:var(--ink-3);font-size:13px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}
+ol.three{padding-left:22px;margin:10px 0}
+ol.three li{margin:6px 0}
+.diagram{max-width:440px;margin:8px auto}
+svg text{font-family:inherit}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2);margin:8px 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:11px;height:11px;border-radius:3px}
+.bar{display:flex;gap:2px;height:34px;margin:10px 0 4px}
+.bar div{display:flex;align-items:center;justify-content:center;color:var(--on);font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden}
+.bar div:first-child{border-radius:6px 0 0 6px}.bar div:last-child{border-radius:0 6px 6px 0}
+ul.alt{list-style:none;padding:0;margin:8px 0}
+ul.alt li{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+ul.alt li:first-child{border-top:0}
+.x{flex:none;width:20px;height:20px;border-radius:50%;background:var(--orange);color:var(--on);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:3px}
+.miles{position:relative;margin:12px 0;padding-left:22px}
+.miles:before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.mile{position:relative;margin:0 0 14px}
+.mile:before{content:"";position:absolute;left:-21px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--dot,var(--gray));box-shadow:0 0 0 3px var(--bg)}
+.mile b{font-weight:600}
+.mile.interim:before{background:var(--blue-soft);box-shadow:inset 0 0 0 2px var(--blue),0 0 0 3px var(--bg)}
+.state-legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--ink-2);margin:6px 0 4px}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px}
+.dp{background:var(--gray)}.di{background:var(--blue-soft);box-shadow:inset 0 0 0 2px var(--blue)}.dd{background:var(--blue)}.dh{background:var(--yellow)}.dx{background:var(--orange)}.dn{background:transparent;box-shadow:inset 0 0 0 2px var(--line)}
+details.q{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin:12px 0;overflow:hidden}
+details.q>summary{list-style:none;cursor:pointer;padding:14px 16px}
+details.q>summary::-webkit-details-marker{display:none}
+.qh{display:flex;align-items:flex-start;gap:10px}
+.qn{flex:none;width:28px;height:28px;border-radius:8px;background:var(--surface-2);color:var(--ink-2);font-weight:600;display:flex;align-items:center;justify-content:center;font-size:14px}
+.qt{flex:1;font-weight:600;line-height:1.45}
+.badge{flex:none;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap;margin-top:2px}
+.tl{display:grid;grid-template-columns:repeat(5,1fr);margin:12px 0 6px;position:relative}
+.tl:before{content:"";position:absolute;left:10%;right:10%;top:7px;height:2px;background:var(--line)}
+.tl .c{text-align:center;position:relative}
+.tl .c .dot{width:16px;height:16px;position:relative;z-index:1;box-shadow:0 0 0 3px var(--surface)}
+.tl .c .dot.di{box-shadow:inset 0 0 0 2px var(--blue),0 0 0 3px var(--surface)}
+.tl .c .dot.dn{box-shadow:inset 0 0 0 2px var(--line),0 0 0 3px var(--surface);background:var(--surface)}
+.tl .c small{display:block;font-size:11px;color:var(--ink-3);line-height:1.3;margin-top:3px}
+.win{margin:6px 0 0;font-size:15px}
+.win b{color:var(--blue);font-weight:600}
+.more{color:var(--ink-3);font-size:13px;margin-top:4px}
+details.q[open] .more{display:none}
+.body{padding:0 16px 14px;border-top:1px solid var(--line)}
+.body h4{font-size:14px;margin:12px 0 2px;color:var(--ink-2);font-weight:600}
+.body ul{margin:2px 0;padding-left:20px}
+.body li{margin:2px 0}
+.ref{font-size:12px;color:var(--ink-3);margin-top:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.grid .card{margin:0}
+.grid .card b{display:block;margin-bottom:2px}
+table.gl{width:100%;border-collapse:collapse;font-size:14px}
+table.gl td{border-top:1px solid var(--line);padding:6px 4px;vertical-align:top}
+table.gl td:first-child{white-space:nowrap;color:var(--ink-2);padding-right:10px}
+a{color:var(--blue)}
+.howto h3{font-size:16px;margin:4px 0}
+.howto ul{margin:4px 0;padding-left:20px}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="網站導覽"><div class="in">
+<a class="brand" href="index.html">ISAC 感知標準演進</a>
+<a href="index.html" aria-current="page">白話圖解</a>
+<a href="timeline.html">時序熱度圖</a>
+<a href="evolution.html">演進圖</a>
+<a href="#reports">專業報告</a>
+<a href="https://github.com/CeceFat/isac-lex">GitHub</a>
+</div></nav>
+<div class="wrap">
+
+<h1>一張圖看懂：手機網路兼當雷達的標準，是怎麼吵出來的</h1>
+<p class="sub">給沒有電機資訊背景的讀者。依據 3GPP TR 23.700-14 v20.0.0（2026 年 3 月核准的研究報告）。本頁只說明技術與過程，不是法律意見。</p>
+
+<h2>先看三句話</h2>
+<ol class="three">
+<li><b>在做什麼：</b>讓 5G 基地台兼當雷達，第一個用途是偵測無人機，結果交給有需要的客戶，例如無人機管理平台。</li>
+<li><b>怎麼吵：</b>各家公司提了 39 種設計，從 2025 年 5 月吵到 2026 年 2 月，最後在 8 個爭論上各選出一種做法。</li>
+<li><b>結果：</b>在網路裡新設一個「感知指揮中心」，直接拉專線到基地台，不經過原本負責轉接的「總機」；這一版只讓基地台當雷達，手機不參與。</li>
+</ol>
+
+<h2>最後定案的系統長這樣</h2>
+<div class="card">
+<div class="diagram">
+<svg viewBox="34 4 332 392" width="100%" role="img" aria-labelledby="dgt dgd">
+<title id="dgt">定案後的感知系統</title>
+<desc id="dgd">委託人經對外櫃台把委託交給感知指揮中心；指揮中心的調度科以專線對雷達站下指令，雷達站以專線把量測資料送到運算科；結果再經櫃台交回委託人。</desc>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="110" y="10" width="180" height="46" rx="8" fill="var(--surface-2)" stroke="var(--line)"/>
+<text x="200" y="29" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">委託人</text>
+<text x="200" y="47" text-anchor="middle" font-size="12" fill="var(--ink-2)">例：無人機管理平台</text>
+<line x1="200" y1="60" x2="200" y2="86" stroke="var(--ink-3)" stroke-width="1.5" marker-start="url(#ah)" marker-end="url(#ah)"/>
+<text x="212" y="78" font-size="12" fill="var(--ink-2)">委託／結果</text>
+<rect x="110" y="90" width="180" height="46" rx="8" fill="var(--surface-2)" stroke="var(--line)"/>
+<text x="200" y="109" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">對外櫃台</text>
+<text x="200" y="127" text-anchor="middle" font-size="12" fill="var(--ink-2)">檢查身分、收件、轉交</text>
+<line x1="200" y1="140" x2="200" y2="166" stroke="var(--ink-3)" stroke-width="1.5" marker-start="url(#ah)" marker-end="url(#ah)"/>
+<text x="212" y="158" font-size="12" fill="var(--ink-2)">轉交／結果</text>
+<rect x="40" y="170" width="320" height="104" rx="12" fill="var(--blue-soft)" stroke="var(--blue)" stroke-width="1.2"/>
+<text x="200" y="190" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">感知指揮中心（新設）</text>
+<rect x="58" y="202" width="134" height="56" rx="8" fill="var(--surface)" stroke="var(--blue)"/>
+<text x="125" y="223" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">調度科</text>
+<text x="125" y="243" text-anchor="middle" font-size="12" fill="var(--ink-2)">收案、審核、下指令</text>
+<rect x="208" y="202" width="134" height="56" rx="8" fill="var(--surface)" stroke="var(--blue)"/>
+<text x="275" y="223" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">運算科</text>
+<text x="275" y="243" text-anchor="middle" font-size="12" fill="var(--ink-2)">收資料、算結果</text>
+<line x1="125" y1="260" x2="125" y2="334" stroke="var(--blue)" stroke-width="1.8" marker-end="url(#ah)"/>
+<text x="117" y="296" text-anchor="end" font-size="12" fill="var(--ink-2)">指令</text>
+<text x="117" y="313" text-anchor="end" font-size="12" fill="var(--ink-2)">（專線）</text>
+<line x1="275" y1="336" x2="275" y2="262" stroke="var(--blue)" stroke-width="1.8" marker-end="url(#ah)"/>
+<text x="283" y="296" font-size="12" fill="var(--ink-2)">量測資料</text>
+<text x="283" y="313" font-size="12" fill="var(--ink-2)">（專線）</text>
+<rect x="60" y="338" width="280" height="52" rx="8" fill="var(--surface-2)" stroke="var(--line)"/>
+<text x="200" y="358" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">雷達站（5G 基地台）</text>
+<text x="200" y="377" text-anchor="middle" font-size="12" fill="var(--ink-2)">發射電波、量測反射訊號</text>
+</svg>
+</div>
+<p class="muted">櫃台用網路的「電話簿」，依服務範圍查出該找哪一個指揮中心。調度科和運算科可以放在同一處，也可以分開；兩科之間怎麼溝通不訂標準。</p>
+</div>
+
+<div class="card">
+<b>曾被提出、但這一版沒有採用的做法</b>
+<ul class="alt">
+<li><span class="x">✕</span><span><b>經過「總機」轉接指令與資料。</b>總機本來負責手機註冊與移動；大家不想加重它的工作，而且它也沒有現成的轉接流程。</span></li>
+<li><span class="x">✕</span><span><b>設好幾個指揮中心分區合作，或在前面再加一層「閘道」。</b>規格會變複雜；最後規定一件委託只交給一個指揮中心。</span></li>
+<li><span class="x">✕</span><span><b>另設專用資料庫，存放過去的偵測結果。</b>決議不另設這種單位。</span></li>
+<li><span class="x">✕</span><span><b>依地點設禁區、依航路動態審核、要求物主同意。</b>改採較單純的「依委託人身分的許可清單」。</span></li>
+<li><span class="x">✕</span><span><b>讓手機也當雷達，或讓手機當委託人。</b>不是技術被否決，而是這一版的研究範圍只做基地台。</span></li>
+</ul>
+</div>
+
+<h2>39 種設計最後去了哪裡</h2>
+<div class="bar" role="img" aria-label="39 種設計中，採納 13、部分採納 8、未決 2、落選 16">
+<div style="flex:13;background:var(--blue)" title="採納 13">採納 13</div>
+<div style="flex:8;background:var(--aqua)" title="部分採納 8">部分 8</div>
+<div style="flex:2;background:var(--yellow)" title="未決 2"></div>
+<div style="flex:16;background:var(--orange)" title="落選 16">落選 16</div>
+</div>
+<div class="legend">
+<span><i class="sw" style="background:var(--blue)"></i>採納 13：主要做法寫進結論</span>
+<span><i class="sw" style="background:var(--aqua)"></i>部分採納 8：一部分被吸收</span>
+<span><i class="sw" style="background:var(--yellow)"></i>未決 2：還沒定</span>
+<span><i class="sw" style="background:var(--orange)"></i>落選 16：這版沒採用</span>
+</div>
+<p class="muted">落選的設計沒有被刪掉，仍然留在研究報告裡；只是沒有寫進最後的結論。</p>
+
+<h2>時間怎麼走</h2>
+<div class="miles">
+<div class="mile"><b>2025 年 4 月</b>　定下要研究的 6 個題目。</div>
+<div class="mile"><b>2025 年 5 月</b>　第一批 20 種設計上桌；另有 38 份提案沒排到討論。</div>
+<div class="mile" style="--dot:var(--orange)"><b>2025 年 8 月</b>　第二批 19 種設計上桌；研究範圍縮小為「只讓基地台當雷達」。</div>
+<div class="mile interim"><b>2025 年 10 月</b>　第一批共識：只設一個指揮中心、不設專用資料庫、只有基地台當雷達、外部委託要過兩道審核。</div>
+<div class="mile" style="--dot:var(--blue)"><b>2025 年 11 月</b>　大部分題目定案；只有「要不要經總機」吵不完，先擱置。</div>
+<div class="mile" style="--dot:var(--blue)"><b>2026 年 2 月</b>　舉手表決：直接拉專線，不經總機。研究結束。</div>
+<div class="mile"><b>2026 年 3 月</b>　研究報告核准發布。接下來進入撰寫正式規格的階段，細節會再吵一輪。</div>
+</div>
+
+<h2>八個爭論，一個一個看</h2>
+<p class="muted">點開每一題可以看各派做法、為什麼這樣決定、還有什麼沒定。下面的小圓點是這一題在五次會議裡的狀態。</p>
+<div class="state-legend">
+<span><i class="dot dp"></i>有人提出</span>
+<span><i class="dot di"></i>暫時共識</span>
+<span><i class="dot dd"></i>定案</span>
+<span><i class="dot dh"></i>擱置</span>
+<span><i class="dot dx"></i>排除在範圍外</span>
+<span><i class="dot dn"></i>這次沒有進展</span>
+</div>
+
+<details class="q"><summary><div class="qh"><span class="qn">1</span><span class="qt">指揮中心對雷達站下指令，要不要經過總機？</span><span class="badge">2026-02 定案</span></div>
+<div class="tl" data-s="p,p,n,h,d"></div>
+<p class="win">4 種做法 → 勝出：<b>直接拉專線，不經總機</b></p><p class="more">點開看細節</p></summary>
+<div class="body">
+<h4>各派做法</h4>
+<ul><li>總機全包：由總機挑雷達站、轉指令、也轉回資料</li><li>總機只轉「密封信」，不拆開看</li><li>總機只介紹一次，之後雙方直接通話</li><li>從頭到尾直接拉專線</li></ul>
+<h4>為什麼專線贏</h4>
+<ul><li>總機現有的作業流程裡沒有「幫感知轉信」，就算經總機也得新增流程，並沒有比較省事</li><li>總機是全網最重要的節點，大家不想加重它的工作</li><li>感知和通話上網分開，互不干擾，也比較好控管安全</li></ul>
+<h4>輸的一方怎麼說</h4>
+<ul><li>總機本來就是核心網對基地台的唯一窗口</li><li>總機最清楚每個雷達站的狀態</li><li>將來手機也當雷達時只能經總機，現在統一比較好</li></ul>
+<h4>表決結果</h4>
+<p>19 家支持、6 家不支持、3 家明確反對（Samsung、Nokia、CEWiT）。</p>
+<h4>還沒定的</h4>
+<p>既然不經總機，雷達站第一次要怎麼知道指揮中心在哪裡？各方案提過三種辦法：營運商事先設定、雷達站主動報到、雷達站自己查電話簿。</p>
+<p class="ref">專業版對照：直連 #1、#21、#26、#34、#35（a 案）；經總機 #5、#7、#13、#17、#35（b 案）、#39</p>
+</div></details>
+
+<details class="q"><summary><div class="qh"><span class="qn">2</span><span class="qt">雷達站量到的資料，怎麼送回來？</span><span class="badge">2025-11 定案</span></div>
+<div class="tl" data-s="p,p,i,d,n"></div>
+<p class="win">6 種做法 → 勝出：<b>另拉資料專線，可以直接送到運算科</b></p><p class="more">點開看細節</p></summary>
+<div class="body">
+<h4>各派做法</h4>
+<ul><li>經總機轉回</li><li>跟指令走同一條線</li><li>另拉一條專線，再用編號對應是哪件案子</li><li>建一條像管線的「隧道」</li><li>直接送到運算科，不經調度科</li><li>另設一個資料收集單位</li></ul>
+<h4>為什麼這樣決定</h4>
+<ul><li>雷達資料量可能很大，不適合跟指令擠在同一條線上</li><li>下指令的地方和收資料的地方分開，部署比較有彈性</li></ul>
+<h4>還沒定的</h4>
+<p>專線用哪一種管線、資料上要標什麼編號，交給負責基地台介面的工作組決定。</p>
+<p class="ref">專業版對照：#5、#7、#18、#21、#22、#24、#25、#26</p>
+</div></details>
+
+<details class="q"><summary><div class="qh"><span class="qn">3</span><span class="qt">指揮中心要一個，還是很多個？</span><span class="badge">2025-11 定案</span></div>
+<div class="tl" data-s="p,p,i,d,n"></div>
+<p class="win">6 種做法 → 勝出：<b>單一指揮中心，內部可分調度科與運算科</b></p><p class="more">點開看細節</p></summary>
+<div class="body">
+<h4>各派做法</h4>
+<ul><li>單一指揮中心，內部可以分科</li><li>調度和運算拆成兩個獨立單位，中間訂標準介面</li><li>依地區設好幾個指揮中心</li><li>前面再加一層「閘道」，統一收件、審核、計費</li><li>多個運算單位接力處理</li><li>借用網路裡現成的資料分析系統</li></ul>
+<h4>為什麼這樣決定</h4>
+<ul><li>規格最精簡；兩科之間怎麼溝通交給廠商自己做</li><li>不另設專用資料庫</li></ul>
+<h4>代價</h4>
+<p>一件委託只交給一個指揮中心。無人機飛越多個指揮中心的範圍時，不能把案子轉給另一個中心，只能在同一個中心內換雷達站繼續追。</p>
+<p class="ref">專業版對照：勝出 #3；其他 #4、#6、#7、#9、#10、#12、#19、#23、#24、#26、#31、#34</p>
+</div></details>
+
+<details class="q"><summary><div class="qh"><span class="qn">4</span><span class="qt">誰來挑指揮中心？誰來挑雷達站？</span><span class="badge">2025-11 定案</span></div>
+<div class="tl" data-s="p,n,i,d,n"></div>
+<p class="win">勝出：<b>依服務範圍挑中心；中心挑雷達站；怎麼量由雷達站自己決定</b></p><p class="more">點開看細節</p></summary>
+<div class="body">
+<h4>各派做法</h4>
+<ul><li>雷達站的能力資料放在總機、放在指揮中心，或由營運商事先設定</li><li>挑法：中心直接指定哪幾座雷達站、用什麼模式；或交給一座「主雷達站」決定；或讓雷達站先回報有幾成把握再挑</li></ul>
+<h4>結果細節</h4>
+<ul><li>櫃台（或受信任的委託人自己）查電話簿，依服務範圍挑指揮中心</li><li>一件委託中途不換指揮中心，但可以換雷達站</li><li>指揮中心只說「要什麼」，「怎麼量」由雷達站決定</li></ul>
+<h4>還沒定的</h4>
+<p>雷達站的能力資料放在哪裡、包含哪些項目。</p>
+<p class="ref">專業版對照：#13、#14、#15、#16、#17</p>
+</div></details>
+
+<details class="q"><summary><div class="qh"><span class="qn">5</span><span class="qt">誰可以下委託？憑什麼？</span><span class="badge">2025-11 定案</span></div>
+<div class="tl" data-s="p,p,i,d,n"></div>
+<p class="win">6 種做法 → 勝出：<b>依委託人身分的許可清單，由營運商事先設定</b></p><p class="more">點開看細節</p></summary>
+<div class="body">
+<h4>各派做法</h4>
+<ul><li>依委託人身分發許可清單</li><li>依地點設禁區，敏感地點可限制精度</li><li>依航路、時段等條件動態審核，飛離航路就停</li><li>要求被偵測物的主人同意</li><li>緊急情況可以覆寫限制</li><li>把感知當成手機的訂閱方案來管</li></ul>
+<h4>清單寫什麼</h4>
+<p>這個委託人可以（或不可以）在哪些區域、哪些時段，委託哪類服務。</p>
+<h4>審核流程</h4>
+<ul><li>外部委託人先過櫃台的身分檢查，再過指揮中心的案件審核</li><li>雷達站是營運商自己的設備，不用另外審核</li><li>委託人可以取消；條件不再符合時，指揮中心可以撤銷</li></ul>
+<h4>還沒定的</h4>
+<p>「部分核准」（例如只核准委託區域的一部分）和「暫停」。</p>
+<p class="ref">專業版對照：#8、#9、#10、#11、#12、#36、#37、#38</p>
+</div></details>
+
+<details class="q"><summary><div class="qh"><span class="qn">6</span><span class="qt">偵測結果怎麼交給委託人？</span><span class="badge">2025-11 定案</span></div>
+<div class="tl" data-s="p,p,n,d,n"></div>
+<p class="win">勝出：<b>經櫃台交付，或直接交給營運商信任的客戶</b></p><p class="more">點開看細節</p></summary>
+<div class="body">
+<h4>結果內容</h4>
+<p>有沒有偵測到目標、目標位置、結果品質、量測時間。</p>
+<h4>交付方式</h4>
+<p>一次性、定期，或事件發生時才通知（例如有物體進入或離開某個區域）。</p>
+<h4>沒被採用的點子</h4>
+<ul><li>只回答「有／沒有」的精簡模式，減少資訊外流</li><li>用上一次結果的編號，追問同一個目標</li><li>直接拿舊結果回覆，不重新偵測</li><li>大量即時結果改走資料專線</li></ul>
+<h4>補充</h4>
+<p>2025 年 5 月這一類提案幾乎都沒排到討論，8 月才集中上桌。</p>
+<p class="ref">專業版對照：#27、#28、#29、#30、#31、#32、#37</p>
+</div></details>
+
+<details class="q"><summary><div class="qh"><span class="qn">7</span><span class="qt">要給雷達站哪些參數？</span><span class="badge">2025-11 定案</span></div>
+<div class="tl" data-s="p,p,n,d,d"></div>
+<p class="win">勝出：<b>指揮中心把委託需求換算成參數，逐案下發，可以依結果調整</b></p><p class="more">點開看細節</p></summary>
+<div class="body">
+<h4>目前列出的參數</h4>
+<p>偵測區域、偵測要持續多久、回報方式（一次或定期）。完整清單還要等基地台工作組確認。</p>
+<h4>沒被採用的</h4>
+<ul><li>由外部營運伺服器事先統一設定所有雷達站</li><li>經總機用「密封信」轉送參數</li></ul>
+<h4>補充</h4>
+<p>參數走哪條路，2026 年 2 月隨第 1 題一起定案（走專線）。</p>
+<p class="ref">專業版對照：#20、#34、#35、#39</p>
+</div></details>
+
+<details class="q"><summary><div class="qh"><span class="qn">8</span><span class="qt">手機要不要也參與？</span><span class="badge">這一版不做</span></div>
+<div class="tl" data-s="p,x,i,d,n"></div>
+<p class="win">結果：<b>這一版只讓基地台當雷達，委託人限外部客戶</b></p><p class="more">點開看細節</p></summary>
+<div class="body">
+<h4>曾經提出的</h4>
+<ul><li>手機當委託人</li><li>手機也當雷達</li><li>以某一支手機的位置作為偵測目標</li></ul>
+<h4>為什麼這次不做</h4>
+<p>不是技術被否決。研究報告早期就註明，手機與基地台相關的範圍要等 2025 年 6 月的 3GPP 全會之後再對齊；8 月起，範圍正式改成和基地台工作組一致，而那邊這一版只研究基地台當雷達。</p>
+<h4>未來</h4>
+<p>3GPP 的 6G 研究已經把「手機參與感知」列為研究議題。如果手機加回來，對手機下指令只能經總機，第 1 題「要不要經總機」可能會重新被提出。</p>
+<p class="ref">專業版對照：#2、#7、#19、#33（以及 #1、#17、#18 的手機部分）</p>
+</div></details>
+
+<h2>還沒定的六件事</h2>
+<p class="muted">這些會在撰寫正式規格時再吵一輪，也最可能成為下一波專利申請的熱點。</p>
+<div class="grid">
+<div class="card"><b>雷達站怎麼第一次找到指揮中心</b>營運商預設、雷達站主動報到，或查電話簿。</div>
+<div class="card"><b>案件編號怎麼編</b>委託、派給雷達站的任務、資料專線，各需要一套編號；目前提案裡有十幾種名稱。</div>
+<div class="card"><b>區域怎麼描述</b>用經緯度畫形狀，還是用基地台的涵蓋範圍編號；由誰換算。</div>
+<div class="card"><b>雷達站能不能說「做不到」</b>很多方案讓雷達站回覆接受、拒絕或有幾成把握，結論沒有提到。</div>
+<div class="card"><b>運算放在哪裡</b>雷達站先算出結果，還是原始資料全部送回指揮中心再算。</div>
+<div class="card"><b>部分核准與暫停</b>只核准一部分區域、或暫時停止偵測，要怎麼處理。</div>
+</div>
+
+<h2>對專利與授權的意義（簡要）</h2>
+<div class="card">
+<ul style="margin:0;padding-left:20px">
+<li>目前只有研究報告，正式規格還沒出來，不能據此斷定哪件專利是標準必要專利。</li>
+<li>勝出的設計比較可能寫進規格：專線直連、調度與運算分開收發、依服務範圍挑選、依委託人身分的許可清單、依結果調整參數。</li>
+<li>以「經總機轉接」「多個指揮中心」「專用資料庫」為必要條件的專利，在這一版較難對上；但 6G 可能再用到，不宜太早下判斷。</li>
+</ul>
+<p class="muted" style="margin-top:8px">本段是技術面的觀察，不是法律意見。</p>
+</div>
+
+<h2>要看兩張專業版圖時，怎麼讀</h2>
+<div class="card howto">
+<h3><a href="timeline.html">時序熱度圖</a></h3>
+<ul>
+<li>每個小方塊是一種設計，方塊上的數字是設計編號（1–39）</li>
+<li>左邊兩欄是哪一批提出的；橫軸是哪一次會議決定了它的命運</li>
+<li>縱軸是「有幾種設計站在同一邊」，只是約略的熱度</li>
+<li>顏色：藍＝採納、綠＝部分採納、黃＝未決、橙＝落選</li>
+<li>看點：「經總機」那一邊的設計比較多，但最後輸了。原因是實際表態支持直連的公司比較多，設計數量不等於支持度</li>
+</ul>
+<h3 style="margin-top:12px"><a href="evolution.html">演進圖</a></h3>
+<ul>
+<li>由左到右讀：被合併的提案 → 39 種設計 → 2025 年 10 月第一批共識 → 11 月結論 → 2026 年 2 月最後表決</li>
+<li>方塊上「連 n」是幾家公司共同提出；「↻ k」是後來有人想修改它幾次（都沒被討論）</li>
+<li>實線箭頭代表正式採用或合併；虛線代表部分採用、未決，或提案方改去支持別人</li>
+<li>滑鼠移到某個設計上，只會亮出它自己那條路線</li>
+<li>看點：第 3 號設計（華為等 10 家共同提出）一路走到最後的共識；「經總機」陣營的第 5、39 號在 2026 年 2 月落敗</li>
+</ul>
+</div>
+
+<h2 id="reports">專業報告</h2>
+<p class="muted">以下六份報告是本頁的依據，在 GitHub 上以 Markdown 呈現。每一則英文引文都附 TR 段落座標，並在本機對原文逐字核對。</p>
+<ul class="reports">
+<li><a href="https://github.com/CeceFat/isac-lex/blob/main/reports/plain-language.md">白話說明</a>：本頁的文字版，八個爭論逐一說明。</li>
+<li><a href="https://github.com/CeceFat/isac-lex/blob/main/reports/solution-differences.md">39 方案技術差異精析</a>：39 個方案逐一拆到要件，§8 每一條結論追到原文出處。</li>
+<li><a href="https://github.com/CeceFat/isac-lex/blob/main/reports/dispute-analysis.md">爭點技術路線分析</a>：七個爭點的技術取捨，以及 2026 年 2 月舉手表決的票數與各陣營論據。</li>
+<li><a href="https://github.com/CeceFat/isac-lex/blob/main/reports/tdoc-heat-and-evolution.md">tdoc 層熱度與演進分析</a>：SA2 六次會議 693 份會議文件與主席筆記，重建方案合併、連署與表決過程。</li>
+<li><a href="https://github.com/CeceFat/isac-lex/blob/main/reports/version-trace.md">版本溯源報告</a>：研究報告 10 個版本的逐版比對。</li>
+<li><a href="https://github.com/CeceFat/isac-lex/blob/main/reports/80211bf-vs-cellular-isac.md">802.11bf 對 cellular ISAC 的啟發與影響</a>：Wi-Fi 感知標準和手機網路感知的逐項對照。</li>
+</ul>
+
+<h2>名詞對照</h2>
+<table class="gl">
+<tr><td>委託人</td><td>AF（Application Function），外部應用，例如無人機管理平台</td></tr>
+<tr><td>對外櫃台</td><td>NEF（Network Exposure Function）</td></tr>
+<tr><td>感知指揮中心</td><td>SF（Sensing Function）；調度科＝SCF，運算科＝SPF</td></tr>
+<tr><td>總機</td><td>AMF（Access and Mobility Management Function），原本管手機註冊與移動</td></tr>
+<tr><td>雷達站</td><td>gNB，5G 基地台</td></tr>
+<tr><td>電話簿</td><td>NRF（NF Repository Function）</td></tr>
+<tr><td>營運商事先設定</td><td>OAM（Operations, Administration and Maintenance）</td></tr>
+<tr><td>研究報告／正式規格</td><td>TR／TS</td></tr>
+<tr><td>標準必要專利</td><td>SEP（Standard Essential Patent）</td></tr>
+</table>
+
+<footer class="site-foot">
+<p><b>資料來源</b>：3GPP TR 23.700-14（<a href="https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4399">3GPP Portal</a>、<a href="https://www.3gpp.org/ftp/Specs/archive/23_series/23.700-14/">各版本</a>）；SA2#168–#173 會議文件與主席筆記（<a href="https://www.3gpp.org/ftp/tsg_sa/WG2_Arch/">3GPP 官方 FTP</a>）；IEEE Std 802.11bf-2025。本站不附任何原文檔案，引用只限含關鍵詞的短句。</p>
+<p><b>關係聲明</b>：本站不是 3GPP、ETSI 或 IEEE 的出版品，未經其審閱或背書。流程與驗證規則由我訂定；程式、資料整理與分析初稿由 Claude（AI）撰寫。</p>
+<p><b>免責聲明</b>：本站內容由大型語言模型基於公開技術標準與會議文件生成，<b>不構成</b>法律意見或任何形式之專業諮詢，也不代表作者任何現任或前任雇主之觀點。研究報告不是正式規格，不能據以判斷任何專利是否為標準必要專利。</p>
+<p>3GPP 文件 © 3GPP Organizational Partners；IEEE Std 802.11bf-2025 © IEEE。</p>
+</footer>
+
+</div>
+<script>
+const S={p:['dp','有人提出'],i:['di','暫時共識'],d:['dd','定案'],h:['dh','擱置'],x:['dx','排除在範圍外'],n:['dn','沒有進展']};
+const M=['2025-05','2025-08','2025-10','2025-11','2026-02'];
+document.querySelectorAll('.tl').forEach(el=>{
+  const st=el.dataset.s.split(',');
+  el.setAttribute('role','img');
+  el.setAttribute('aria-label',st.map((k,i)=>M[i]+' '+S[k][1]).join('，'));
+  el.innerHTML=st.map((k,i)=>'<div class="c" title="'+M[i]+'：'+S[k][1]+'"><i class="dot '+S[k][0]+'"></i><small>'+M[i]+'</small></div>').join('');
+});
+</script>
+</body>
+</html>

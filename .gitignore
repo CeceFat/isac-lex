@@ -1,0 +1,8 @@
+# 本機抽取的原文文字（3GPP / IEEE），只用於引文核對，不可進 repo
+source/
+__pycache__/
+*.pyc
+# Google Drive 上傳暫存，不是專案內容
+.tmp.driveupload/
+# 本機交接筆記，不進公開 repo
+HANDOFF.md

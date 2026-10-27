@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="TR 23.700-14 的 39 個 solution 從提案、合併到 SA2#171 暫定協議、#172 結論、#173 表決的演進流向圖。專業版圖表。"><title>演進圖｜ISAC 感知標準演進</title>
+<style>
+:root{--bg:#fcfcfb;--panel:#ffffff;--t1:#0b0b0b;--t2:#52514e;--t3:#898781;--grid:#e1e0d9;--line:#c3c2b7;--o1:#2a78d6;--o2:#eb6834;--o3:#1baf7a;--o4:#eda100;--gray:#b4b2a9}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#1a1a19;--panel:#232321;--t1:#f0efec;--t2:#c3c2b7;--t3:#898781;--grid:#2c2c2a;--line:#5f5e5a;--o1:#3987e5;--o2:#d95926;--o3:#199e70;--o4:#c98500;--gray:#5f5e5a}}
+:root[data-theme=dark]{--bg:#1a1a19;--panel:#232321;--t1:#f0efec;--t2:#c3c2b7;--t3:#898781;--grid:#2c2c2a;--line:#5f5e5a;--o1:#3987e5;--o2:#d95926;--o3:#199e70;--o4:#c98500;--gray:#5f5e5a}
+body{margin:0;background:var(--bg);color:var(--t1);font-family:system-ui,"Noto Sans TC",sans-serif;padding:16px}
+.wrap{max-width:1240px;margin:0 auto}
+p.note{font-size:13px;color:var(--t2);margin:4px 0 10px;line-height:1.6}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--t2);margin-bottom:8px}
+.legend span{display:flex;align-items:center;gap:5px}.sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+.scroller{overflow-x:auto}
+svg text{font-family:inherit}
+.n{cursor:pointer}.dim{opacity:.12}
+#tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;line-height:1.5;max-width:320px;opacity:0;transition:opacity .1s;color:var(--t1)}
+</style></head><body><div class="wrap">
+<nav aria-label="網站導覽" style="display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:14px;padding:0 0 10px;margin:0 0 12px;border-bottom:1px solid var(--line)"><a href="index.html" style="font-weight:600;color:var(--t1);text-decoration:none;margin-right:auto">ISAC 感知標準演進</a><a href="index.html" style="color:var(--t2);text-decoration:none">白話圖解</a><a href="timeline.html" style="color:var(--t2);text-decoration:none">時序熱度圖</a><a href="evolution.html" style="color:var(--o1);text-decoration:none" aria-current="page">演進圖</a><a href="index.html#reports" style="color:var(--t2);text-decoration:none">專業報告</a><a href="https://github.com/CeceFat/isac-lex" style="color:var(--t2);text-decoration:none">GitHub</a></nav>
+<p style="font-size:13px;color:var(--t1);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:0 0 10px">這是專業版圖表。沒有電機資訊背景的讀者，請先看 <a href="index.html" style="color:var(--o1)">ISAC 白話圖解</a>，那裡用比喻說明系統長相、八個爭論與時間線，最後也教怎麼讀這張圖。</p>
+<p class="note">TR 23.700-14 的 39 個 solution 從提案到結論的演進。左欄是被併入的提案（實線箭頭表示 tdoc 層正式合併，虛線表示原提案未被處理、提案方改為連署）；中欄方塊上的「連 n」是核准 tdoc 的連署公司數，「↻ k」是 SA2#170–#172 期間他人或自己提交的更新嘗試數（全部未被處理）；右側三欄是 SA2#171 暫定協議、#172 結論、#173 KI#1 修正，括號內是 penholder 與連署家數。滑鼠移到 solution 上會只亮出它的路徑。</p>
+<div class="legend">
+<span><i class="sw" style="background:var(--o1)"></i>採納</span><span><i class="sw" style="background:var(--o3)"></i>部分採納</span><span><i class="sw" style="background:var(--o4)"></i>未決</span><span><i class="sw" style="background:var(--o2)"></i>排除</span>
+<span><svg width="28" height="8"><line x1="0" y1="4" x2="28" y2="4" stroke="var(--t2)" stroke-width="1.5"/></svg>正式合併／採納</span>
+<span><svg width="28" height="8"><line x1="0" y1="4" x2="28" y2="4" stroke="var(--t2)" stroke-width="1.5" stroke-dasharray="4 3"/></svg>改連署／部分或未決</span>
+</div>
+<div class="scroller" style="position:relative"><svg id="g" width="1220" height="900" viewBox="0 0 1220 900" role="img" aria-label="39 個 solution 的演進流向圖"></svg><div id="tip"></div></div>
+<p style="font-size:12px;color:var(--t2);line-height:1.7;border-top:1px solid var(--line);margin-top:24px;padding-top:10px">獨立分析，非 3GPP、ETSI 或 IEEE 出版品；不構成法律意見，也不代表作者任何現任或前任雇主之觀點。資料來源：3GPP TR 23.700-14 v20.0.0 及 SA2#168–#173 會議文件（3GPP 官方 FTP）。3GPP 文件 © 3GPP Organizational Partners。流程與驗證規則由我訂定；程式、資料整理與分析初稿由 Claude（AI）撰寫。</p>
+</div>
+<script>
+const H={"1":[["Qualcomm","Deutsche Telekom"],3,0,[]],"2":[["LG Electronics","OPPO"],3,1,[]],"3":[["Huawei","CAICT","China Mobile","ZTE","CATT","Deutsche Telekom","OPPO","China Telecom","KDDI","Rakuten Mobile"],3,3,["KPN","Toyota","Xiaomi"]],"4":[["ETRI"],2,3,[]],"5":[["NTT DOCOMO","Nokia"],3,2,[]],"6":[["InterDigital"],2,8,["ETRI","KPN","Lenovo","NTT DOCOMO","TNO"]],"7":[["Intel","NTT DOCOMO"],3,0,[]],"8":[["China Mobile","Nokia","Lenovo","KDDI"],3,3,[]],"9":[["Samsung"],2,1,[]],"10":[["Toyota","BUPT"],3,0,[]],"11":[["Xiaomi"],3,2,["Futurewei"]],"12":[["Tejas"],0,2,[]],"13":[["vivo"],2,3,[]],"14":[["Futurewei"],2,0,[]],"15":[["Sony"],3,4,["China Mobile"]],"16":[["Lenovo"],2,6,["Huawei","NTT DOCOMO","ZTE"]],"17":[["CEWiT"],2,1,[]],"18":[["OPPO"],2,2,[]],"19":[["Apple"],2,0,[]],"20":[["China Mobile"],2,4,["Huawei"]],"21":[["CATT"],2,2,[]],"22":[["vivo","ETRI"],2,2,[]],"23":[["Apple"],3,2,["Mitsubishi Electric"]],"24":[["Intel"],3,4,["KPN","TNO"]],"25":[["BUPT","Toyota"],3,1,[]],"26":[["China Telecom","Toyota"],2,0,[]],"27":[["Nokia","KDDI"],2,0,[]],"28":[["Ericsson"],3,1,[]],"29":[["China Mobile"],3,0,[]],"30":[["ETRI"],2,0,[]],"31":[["OPPO"],3,1,["Toyota"]],"32":[["CEWiT","KPN"],3,0,[]],"33":[["InterDigital"],3,0,[]],"34":[["ZTE"],3,1,[]],"35":[["Samsung"],2,1,[]],"36":[["Lenovo","Futurewei","China Telecom","Toyota"],2,1,["Ericsson"]],"37":[["Huawei","CAICT"],2,1,["Ericsson"]],"38":[["Toyota","BUPT"],2,1,[]],"39":[["Tejas"],2,0,[]]};
+const OUT={1:1,2:2,3:1,4:3,5:2,6:3,7:2,8:1,9:2,10:2,11:3,12:2,13:4,14:1,15:3,16:3,17:4,18:1,19:2,20:2,21:1,22:1,23:2,24:2,25:1,26:2,27:1,28:1,29:3,30:1,31:2,32:1,33:2,34:2,35:3,36:3,37:1,38:2,39:2};
+const DESC={1:'直連介面承載控制＋資料',2:'UE 作消費者',3:'通用框架 SF＝SCF/SPF',4:'SeMF 依覆蓋區分散',5:'AMF 主導框架',6:'依服務區的 Sensing NF',7:'SSMF＋DCCF',8:'SCF 授權撤銷',9:'SSF＋SPF 授權',10:'Sensing Gateway',11:'條件式授權／撤銷',12:'SCF＋SDF＋SDR',13:'SEMF 經 AMF 發現 SE',14:'NRF 註冊發現 SF',15:'SF 持 SE 清單',16:'SE 向 SF 註冊',17:'SeMF 經 AMF 選 SE',18:'資料連線＋綁定',19:'SeMF/SPF/SPAF',20:'營運伺服器佈建參數',21:'NG-RAN–SF 直連資料',22:'gNB–SF 資料隧道',23:'分散多處理端',24:'SDCF 匯集資料',25:'gNB–SPF sensing session',26:'SDMF 結果儲存',27:'請求參數與曝露',28:'SnCF 經 NEF 曝露',29:'即時／訂閱曝露',30:'可信／不可信 AF 曝露',31:'GSMF＋結果儲存',32:'SeMF 曝露',33:'依 UE 位置感知',34:'GSF 閘道＋參數分層',35:'參數配置直連或經 AMF',36:'SE 重選／暫停',37:'授權撤銷曝露',38:'AF 經 SDM 佈建授權',39:'經 AMF 設定單站'};
+const C={171:{1:['KI#1 暫定','S2-2509659','Xiaomi',21,'單一 SF＋SCF/SPF；無儲存 NF；只有 gNB'],2:['KI#2 暫定','S2-2509824','Huawei',24,'NEF＋SF 兩段授權'],3:['KI#3 暫定','S2-2509825','Qualcomm',25,'NRF 選 SF；SF 選 gNB'],4:['KI#4 暫定','S2-2509826','Ericsson',17,'gNB 自決量測；多 gNB']},
+172:{1:['KI#1 結論','S2-2511301','Xiaomi',12,'資料直連；一請求一 SF；控制路徑 FFS'],2:['KI#2 結論','S2-2511042','vivo',19,'proceed/reject；partial、pause FFS'],3:['KI#3 結論','S2-2511040','LG',25,'AF/NEF 選 SF；SE 可重選'],4:['KI#4 結論','S2-2511044','ZTE',17,'直連傳資料；格式交 RAN3'],5:['KI#5 結論','S2-2511049','Nokia',24,'經 NEF 曝露；一次/週期/事件'],6:['KI#6 結論','S2-2511041','Samsung',21,'SF 推導並下發參數']},
+173:{a:['KI#1 P4a 直連','S2-2601651','OPPO',9,'控制信令直連、不經 AMF'],d:['直連 baseline','S2-2600580','Qualcomm',1,'延期（時間不足）'],i:['間接 baseline','S2-2600620','Nokia',5,'Nokia、DOCOMO、Samsung、KPN、Tejas；未處理']}};
+const LINK={1:[['173a',1],['172.1',1]],3:[['171.1',1]],4:[['172.3',0]],6:[['172.3',0]],8:[['171.2',1]],11:[['172.2',0]],13:[['172.3',0]],14:[['171.3',1]],15:[['172.3',0]],16:[['172.3',0]],17:[['172.3',0]],18:[['172.4',1]],21:[['172.4',1]],22:[['172.4',1]],25:[['172.4',1]],27:[['172.5',1]],28:[['172.5',1]],29:[['172.5',0]],30:[['172.5',1]],32:[['172.5',1]],35:[['173a',0],['173i',0]],36:[['172.3',0]],37:[['172.2',1]],5:[['173i',1]],39:[['173i',1]],12:[['173i',0]]};
+const INP=[{id:'rak',t:'Rakuten/NIST 架構方案',s:'S2-2504609 → 併入',to:[3],solid:1},{id:'conv',t:'未處理的 KI#1 架構方案',s:'OPPO、中國電信、ZTE、CATT 改連署',to:[3],solid:0},{id:'etri',t:'ETRI NRPPa 直連方案',s:'S2-2507089 → 併入',to:[22],solid:1},{id:'xm',t:'Xiaomi 撤銷方案',s:'S2-2507810 → 併入既有 #11',to:[11],solid:1},{id:'nh',t:'未處理的新方案',s:'#169：38 件；#170：12 件',to:[],solid:0},{id:'up',t:'solution 更新嘗試',s:'#170–#172：58 件，全部未處理',to:[],solid:0}];
+const svg=document.getElementById('g'),NS='http://www.w3.org/2000/svg';
+function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e}
+function tx(x,y,s,o){const e=el('text',Object.assign({x,y,'font-size':12,fill:'var(--t1)'},o||{}));e.textContent=s;return e}
+const col=v=>'var(--o'+v+')';
+const heads=[[20,'被併入的提案'],[300,'39 solutions（SA2#169／#170 進場）'],[610,'SA2#171 暫定協議'],[820,'SA2#172 結論'],[1030,'SA2#173 KI#1']];
+heads.forEach(h=>tx(h[0],22,h[1],{'font-size':13,'font-weight':500,fill:'var(--t2)'}));
+const SX=300,SW=190,SH=17,SG=4.5,SY=40;const pos={};
+for(let s=1;s<=39;s++){const y=SY+(s-1)*(SH+SG);pos['s'+s]={x:SX,y,w:SW,h:SH}}
+const NW=180,NH=46;
+const place=(m,keys,x,y0,gap)=>keys.forEach((k,i)=>{pos[m+'.'+k]={x,y:y0+i*(NH+gap),w:NW,h:NH}});
+place(171,[1,2,3,4],610,60,40);place(172,[1,2,3,4,5,6],820,60,30);
+pos['173a']={x:1030,y:60,w:NW,h:NH};pos['173d']={x:1030,y:160,w:NW,h:NH};pos['173i']={x:1030,y:330,w:NW,h:NH};
+INP.forEach((n,i)=>{pos['in'+n.id]={x:20,y:[60,130,470,240,640,720][i],w:220,h:40}});
+const paths=[];const LG=el('g',{});
+function link(a,b,solid,tag){const A=pos[a],B=pos[b];const x1=A.x+A.w,y1=A.y+A.h/2,x2=B.x-4,y2=B.y+B.h/2,mx=(x1+x2)/2;
+ const p=el('path',{d:`M${x1} ${y1}C${mx} ${y1},${mx} ${y2},${x2} ${y2}`,fill:'none',stroke:'var(--t3)','stroke-width':1.2,'stroke-dasharray':solid?'none':'4 3','marker-end':'url(#ah)'},LG);p.dataset.tag=tag;paths.push(p);return p}
+el('defs',{}).innerHTML='<marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5"/></marker>';
+INP.forEach(n=>n.to.forEach(s=>link('in'+n.id,'s'+s,n.solid,'s'+s)));
+for(const s in LINK)LINK[s].forEach(([k,solid])=>link('s'+s,k,solid,'s'+s));
+[[ '171.1','172.1'],['171.2','172.2'],['171.3','172.3'],['171.4','172.4'],['172.1','173a']].forEach(([a,b])=>link(a,b,1,'chain'));
+link('173d','173a',0,'chain');
+const tip=document.getElementById('tip');
+function show(html,x,y){tip.innerHTML=html;tip.style.left=Math.min(x+14,1220-330)+'px';tip.style.top=(y+10)+'px';tip.style.opacity=1}
+function focus(tag){paths.forEach(p=>p.classList.toggle('dim',tag&&p.dataset.tag!==tag));document.querySelectorAll('.sn').forEach(g=>g.classList.toggle('dim',tag&&g.dataset.tag!==tag))}
+INP.forEach(n=>{const P=pos['in'+n.id];const g=el('g',{});el('rect',{x:P.x,y:P.y,width:P.w,height:P.h,rx:6,fill:'var(--panel)',stroke:'var(--line)','stroke-dasharray':n.to.length?'none':'3 3'},g);tx(P.x+10,P.y+16,n.t,{'font-weight':500},g);tx(P.x+10,P.y+32,n.s,{fill:'var(--t2)','font-size':11},g)});
+for(let s=1;s<=39;s++){const P=pos['s'+s],h=H[s];const g=el('g',{class:'n sn',tabindex:0});g.dataset.tag='s'+s;
+ el('rect',{x:P.x,y:P.y,width:P.w,height:P.h,rx:4,fill:col(OUT[s]),'stroke-dasharray':s>20?'3 2':'none',stroke:'var(--bg)','stroke-width':1},g);
+ tx(P.x+6,P.y+12.5,'#'+s+' '+h[0][0],{fill:'#fff','font-weight':500,'font-size':11},g);
+ tx(P.x+P.w-4,P.y+12.5,'連'+h[0].length+(h[2]?' ↻'+h[2]:''),{fill:'#fff','font-size':11,'text-anchor':'end'},g);
+ const html=`<b style="font-weight:500">Sol #${s}</b>　${['','採納','排除','部分採納','未決'][OUT[s]]}<br>${DESC[s]}<br><span style="color:var(--t2)">連署：${h[0].join('、')}<br>誕生前修訂 ${h[1]} 次；後續更新嘗試 ${h[2]} 件（全未處理）${h[3].length?'<br>第三方更新：'+h[3].join('、'):''}</span>`;
+ g.addEventListener('mouseenter',()=>{focus('s'+s);show(html,P.x+P.w,P.y)});g.addEventListener('mouseleave',()=>{focus(null);tip.style.opacity=0});g.addEventListener('focus',()=>{focus('s'+s);show(html,P.x+P.w,P.y)});g.addEventListener('blur',()=>{focus(null);tip.style.opacity=0})}
+function cnode(key,d,state){const P=pos[key];const g=el('g',{});el('rect',{x:P.x,y:P.y,width:P.w,height:P.h,rx:6,fill:'var(--panel)',stroke:state==='ok'?'var(--o1)':'var(--line)','stroke-width':state==='ok'?1.5:1,'stroke-dasharray':state==='lost'?'3 3':'none'},g);
+ tx(P.x+8,P.y+16,d[0]+'（'+d[2]+'＋'+(d[3]-1)+'）',{'font-weight':500,'font-size':12},g);tx(P.x+8,P.y+31,d[1],{fill:'var(--t3)','font-size':11},g);
+ const s=el('title',{},g);s.textContent=d[4];g.addEventListener('mouseenter',()=>show('<b style="font-weight:500">'+d[0]+'</b>　'+d[1]+'<br>'+d[4]+'<br><span style="color:var(--t2)">penholder：'+d[2]+'；連署 '+d[3]+' 家</span>',P.x-330,P.y));g.addEventListener('mouseleave',()=>tip.style.opacity=0)}
+for(const k in C[171])cnode('171.'+k,C[171][k],'ok');for(const k in C[172])cnode('172.'+k,C[172][k],'ok');
+cnode('173a',C[173].a,'ok');cnode('173d',C[173].d,'');cnode('173i',C[173].i,'lost');
+const sink=[[610,520,'#171 落敗（留在 TR）','#7 #9 #12 #19 #24 #26 #31'],[820,620,'#172 落敗（留在 TR）','#2 #10 #20 #23 #33 #34 #38'],[1030,430,'#173 落敗','#5 #39；#35 只存直連案']];
+sink.forEach(([x,y,a,b])=>{const g=el('g',{});el('rect',{x,y,width:NW,height:NH,rx:6,fill:'none',stroke:'var(--o2)','stroke-dasharray':'3 3'},g);tx(x+8,y+18,a,{'font-weight':500},g);tx(x+8,y+34,b,{fill:'var(--t2)','font-size':11},g)});
+[[7,0],[9,0],[12,0],[19,0],[24,0],[26,0],[31,0]].forEach(([s])=>{pos['k171']={x:610,y:520,w:NW,h:NH};link('s'+s,'k171',0,'s'+s).setAttribute('stroke','var(--o2)')});
+[2,10,20,23,33,34,38].forEach(s=>{pos['k172']={x:820,y:620,w:NW,h:NH};link('s'+s,'k172',0,'s'+s).setAttribute('stroke','var(--o2)')});
+pos['k173']={x:1030,y:430,w:NW,h:NH};link('173i','k173',0,'chain').setAttribute('stroke','var(--o2)');
+</script></body></html>

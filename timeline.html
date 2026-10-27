@@ -1,0 +1,52 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="TR 23.700-14 的 39 個 solution：提出（SA2#169／#170）與定案（SA2#171–#173）時序，以及同立場方案數。專業版圖表。"><title>時序熱度圖｜ISAC 感知標準演進</title>
+<style>:root{--surface-1:#fcfcfb;--surface-3:#ffffff;--text-primary:#0b0b0b;--text-secondary:#52514e;--text-muted:#898781;--border:rgba(11,11,11,.10);--border-strong:rgba(11,11,11,.2)}
+@media (prefers-color-scheme:dark){:root:not([data-mode=light]){--surface-1:#1a1a19;--surface-3:#2c2c2a;--text-primary:#f0efec;--text-secondary:#c3c2b7;--border:rgba(255,255,255,.10);--border-strong:rgba(255,255,255,.2)}}
+body{margin:0 auto;max-width:720px;padding:16px;background:var(--surface-1);color:var(--text-primary);font-family:system-ui,"Noto Sans TC",sans-serif}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}</style></head><body>
+<nav aria-label="網站導覽" style="display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:14px;padding:0 0 10px;margin:0 0 12px;border-bottom:1px solid var(--border)"><a href="index.html" style="font-weight:600;color:var(--text-primary);text-decoration:none;margin-right:auto">ISAC 感知標準演進</a><a href="index.html" style="color:var(--text-secondary);text-decoration:none">白話圖解</a><a href="timeline.html" style="color:#2a78d6;text-decoration:none" aria-current="page">時序熱度圖</a><a href="evolution.html" style="color:var(--text-secondary);text-decoration:none">演進圖</a><a href="index.html#reports" style="color:var(--text-secondary);text-decoration:none">專業報告</a><a href="https://github.com/CeceFat/isac-lex" style="color:var(--text-secondary);text-decoration:none">GitHub</a></nav>
+<p style="font-size:13px;color:var(--text-primary);border:1px solid var(--border-strong);border-radius:8px;padding:8px 12px;margin:0 0 10px">這是專業版圖表。沒有電機資訊背景的讀者，請先看 <a href="index.html">ISAC 白話圖解</a>，那裡用比喻說明系統長相、八個爭論與時間線，最後也教怎麼讀這張圖。</p>
+<p style="font-size:13px;color:var(--text-secondary)">TR 23.700-14 v20.0.0：39 個 solution 的提出（SA2#169／#170）與定案（SA2#171–#173）時序。y 軸是持同一立場的 solution 數，屬支持熱度的代理指標，不是會議文件修訂次數或聯署家數。</p>
+<h2 class="sr-only">TR 23.700-14 的 39 個 solution 依定案會議（x）與同陣營 solution 數（y）分布，顏色為結果。</h2>
+<style>
+:root{--o1:#2a78d6;--o2:#eb6834;--o3:#1baf7a;--o4:#eda100;--grid:#e1e0d9;--axis:#c3c2b7}
+@media (prefers-color-scheme:dark){:root:not([data-mode=light]){--o1:#3987e5;--o2:#d95926;--o3:#199e70;--o4:#c98500;--grid:#2c2c2a;--axis:#383835}}
+[data-mode=dark]{--o1:#3987e5;--o2:#d95926;--o3:#199e70;--o4:#c98500;--grid:#2c2c2a;--axis:#383835}
+.pt{cursor:pointer}.pt:hover rect,.pt:focus rect{stroke:var(--text-primary)}
+#tip{position:absolute;pointer-events:none;background:var(--surface-3);border:0.5px solid var(--border-strong);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--text-primary);max-width:260px;line-height:1.5;opacity:0;transition:opacity .1s}
+table.ix{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed;margin-top:12px}table.ix td,table.ix th{border-top:0.5px solid var(--border);padding:4px 6px;text-align:left;vertical-align:top;color:var(--text-primary)}table.ix th{color:var(--text-secondary);font-weight:500}
+</style>
+<div style="display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--text-secondary);margin:0 0 8px">
+<span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:var(--o1)"></span>採納 <span id="c1"></span></span>
+<span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:var(--o3)"></span>部分採納 <span id="c3"></span></span>
+<span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:var(--o4)"></span>未決 <span id="c4"></span></span>
+<span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:var(--o2)"></span>排除 <span id="c2"></span></span>
+<span>實線框＝SA2#169 提出；虛線框＝SA2#170 提出</span>
+</div>
+<div id="wrap" style="position:relative"><svg id="ch" width="100%" viewBox="0 0 680 470" role="img" aria-label="39 個 solution 的提出與定案時序及支持熱度散點圖"></svg><div id="tip"></div></div>
+<table class="ix"><colgroup><col style="width:34px"><col style="width:42px"><col><col style="width:150px"><col style="width:62px"><col style="width:46px"></colgroup>
+<thead><tr><th>#</th><th>提出</th><th>內容（主要爭點）</th><th>陣營（熱度）</th><th>結果</th><th>定案</th></tr></thead><tbody id="tb"></tbody></table>
+<script>
+const C={SF:['單一 SF（可內分 SCF/SPF）',24],MULTI:['另設多個獨立 NF',11],AUTH:['NEF＋SF 兩段授權',9],DATA:['感知資料直連 gNB–SF',8],SFSEL:['依 sensing area 經 NRF 選 SF',6],EXPO:['經 NEF／直送可信 AF 曝露',6],AMF:['控制信令經 AMF',6],UE:['UE 納入範圍',5],CTRL:['控制信令直連 gNB–SF',4],STORE:['專用儲存 NF',4],GW:['閘道型 NF',3],SEAMF:['經 AMF 發現 SE',3],RESEL:['SE 重選／暫停',3],SEINV:['SF 自持 SE 清單',2],OPS:['營運伺服器佈建一般參數',1],DIST:['多處理端分散運算',1]};
+const O={1:'採納',2:'排除',3:'部分採納',4:'未決'};
+const D=[[1,169,'直連介面承載控制＋資料','CTRL',1,173],[2,169,'UE 作消費者，經 PDU Session 連 SSF','UE',2,172],[3,169,'通用框架：SF 分 SCF/SPF（結論用語源頭）','SF',1,171],[4,169,'SeMF 依覆蓋區分散部署','SFSEL',3,172],[5,169,'AMF 主導 SE 發現與請求轉送','AMF',2,173],[6,169,'Sensing NF 依服務區授權','SFSEL',3,172],[7,169,'SSMF＋重用 DCCF 收資料，經 NGAP','MULTI',2,171],[8,169,'SCF 授權與撤銷','AUTH',1,171],[9,169,'SSF＋SPF（政策 NF）授權','MULTI',2,171],[10,169,'Sensing Gateway＋Override 指示','GW',2,172],[11,169,'條件式授權、重新授權、撤銷','AUTH',3,172],[12,169,'SCF＋SDF＋SDR（資料庫）','STORE',2,171],[13,169,'SEMF 經 AMF 發現 SE','SEAMF',4,172],[14,169,'NRF 註冊／發現 SF（可信/不可信 AF）','SFSEL',1,171],[15,169,'SF 持 SE 能力清單並選擇','SEINV',3,172],[16,169,'SE 向 SF 註冊後由 SF 選擇','SEINV',3,172],[17,169,'SeMF 經 AMF 選 SE','SEAMF',4,172],[18,169,'資料連線＋綁定資訊','DATA',1,172],[19,169,'SeMF/SPF/SPAF 分拆，SE 或 UE 皆可','MULTI',2,171],[20,169,'營運伺服器佈建 SE 一般參數','OPS',2,172],[21,170,'NG-RAN 與 SF 直連介面傳資料','DATA',1,172],[22,170,'gNB–SF 資料隧道（TEID）','DATA',1,172],[23,170,'多個處理端分散運算','DIST',2,172],[24,170,'SDCF 匯集多 SE 資料','MULTI',2,171],[25,170,'SCF 建立 gNB–SPF 直連 sensing session','DATA',1,172],[26,170,'SDMF 儲存結果＋SCF–gNB 新介面','STORE',2,171],[27,170,'請求參數與一次/週期/事件曝露','EXPO',1,172],[28,170,'SnCF 經 NEF 曝露給 AF','EXPO',1,172],[29,170,'即時與訂閱型結果曝露（使用者面機制未定）','EXPO',3,172],[30,170,'可信/不可信 AF 曝露','EXPO',1,172],[31,170,'GSMF＋SSMF＋結果儲存 NF','STORE',2,171],[32,170,'SeMF 曝露給 AF','EXPO',1,172],[33,170,'以目標 UE 位置為基礎的感知','UE',2,172],[34,170,'GSF 閘道＋AF/SF 參數分層','GW',2,172],[35,170,'參數配置：直連或經 AMF 兩案','CTRL',3,173],[36,170,'SE 重選／暫停（禁止區）','RESEL',3,172],[37,170,'授權、撤銷與曝露（NEF）','AUTH',1,172],[38,170,'AF 經 SDM 佈建授權資訊','STORE',2,172],[39,170,'經 AMF 設定 gNB 單站感知','AMF',2,173]];
+const M={169:'2025-05',170:'2025-08',171:'2025-10',172:'2025-11',173:'2026-02'};
+const X={169:72,170:146,171:258,172:442,173:616},W={171:150,172:250,173:90};
+const yv=h=>h>12?38:420-h*30;const NS='http://www.w3.org/2000/svg',svg=document.getElementById('ch');
+function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e}
+for(const m of [169,170]){el('rect',{x:X[m]-32,y:60,width:64,height:356,rx:4,fill:'var(--surface-1)'});el('text',{x:X[m],y:236,'text-anchor':'middle','font-size':12,fill:'var(--text-secondary)'}).textContent='提出';el('text',{x:X[m],y:254,'text-anchor':'middle','font-size':12,fill:'var(--text-secondary)'}).textContent=m==169?'#1–20':'#21–39'}
+for(let h=0;h<=12;h+=2){el('line',{x1:40,x2:670,y1:yv(h),y2:yv(h),stroke:'var(--grid)','stroke-width':1});el('text',{x:32,y:yv(h)+4,'text-anchor':'end','font-size':11,fill:'var(--text-muted)'}).textContent=h}
+el('line',{x1:40,x2:670,y1:38,y2:38,stroke:'var(--grid)','stroke-width':1,'stroke-dasharray':'2 3'});el('text',{x:32,y:42,'text-anchor':'end','font-size':11,fill:'var(--text-muted)'}).textContent=24;
+el('text',{x:44,y:18,'font-size':11,fill:'var(--text-muted)'}).textContent='y＝持同一立場的 solution 數（支持熱度代理）；虛線上方為斷軸';
+el('line',{x1:40,x2:670,y1:420,y2:420,stroke:'var(--axis)','stroke-width':1});
+for(const m in M){el('text',{x:X[m],y:440,'text-anchor':'middle','font-size':12,fill:'var(--text-secondary)'}).textContent='SA2#'+m;el('text',{x:X[m],y:456,'text-anchor':'middle','font-size':11,fill:'var(--text-muted)'}).textContent=M[m]}
+const g={};D.forEach(d=>{const k=d[5]+'_'+C[d[3]][1];(g[k]=g[k]||[]).push(d)});
+const tip=document.getElementById('tip');
+Object.values(g).forEach(arr=>{const n=arr.length,sp=Math.min(34,W[arr[0][5]]/n);arr.forEach((d,i)=>{const cx=X[d[5]]+(i-(n-1)/2)*sp,cy=yv(C[d[3]][1]);
+const p=el('g',{class:'pt',tabindex:0});el('rect',{x:cx-15,y:cy-9,width:30,height:18,rx:4,fill:'var(--o'+d[4]+')',stroke:'var(--surface-1)','stroke-width':1.5,'stroke-dasharray':d[1]==170?'3 2':'none'},p);
+el('text',{x:cx,y:cy+4,'text-anchor':'middle','font-size':11,fill:'#ffffff','font-weight':500},p).textContent=d[0];
+const show=()=>{tip.innerHTML='<span style="font-weight:500">Sol #'+d[0]+'</span>　'+O[d[4]]+'<br>'+d[2]+'<br><span style="color:var(--text-secondary)">陣營：'+C[d[3]][0]+'（'+C[d[3]][1]+'）<br>提出 SA2#'+d[1]+' → 定案 SA2#'+d[5]+'</span>';const r=svg.getBoundingClientRect(),s=r.width/680;tip.style.left=Math.max(0,Math.min(cx*s+12,r.width-270))+'px';tip.style.top=(cy*s+14)+'px';tip.style.opacity=1};
+p.addEventListener('mouseenter',show);p.addEventListener('focus',show);p.addEventListener('mouseleave',()=>tip.style.opacity=0);p.addEventListener('blur',()=>tip.style.opacity=0)})});
+const cnt={1:0,2:0,3:0,4:0};D.forEach(d=>cnt[d[4]]++);for(const k in cnt)document.getElementById('c'+k).textContent=cnt[k];
+document.getElementById('tb').innerHTML=D.map(d=>'<tr><td>'+d[0]+'</td><td>#'+d[1]+'</td><td>'+d[2]+'</td><td>'+C[d[3]][0]+'（'+C[d[3]][1]+'）</td><td><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--o'+d[4]+');margin-right:4px"></span>'+O[d[4]]+'</td><td>#'+d[5]+'</td></tr>').join('');
+</script>
+<p style="font-size:12px;color:var(--text-secondary);line-height:1.7;border-top:1px solid var(--border);margin-top:24px;padding-top:10px">獨立分析，非 3GPP、ETSI 或 IEEE 出版品；不構成法律意見，也不代表作者任何現任或前任雇主之觀點。資料來源：3GPP TR 23.700-14 v20.0.0 及 SA2#168–#173 會議文件（3GPP 官方 FTP）。3GPP 文件 © 3GPP Organizational Partners。流程與驗證規則由我訂定；程式、資料整理與分析初稿由 Claude（AI）撰寫。</p>
+</body></html>
