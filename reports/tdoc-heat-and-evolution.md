@@ -2,16 +2,17 @@
 
 - 日期：2026-10-27
 - 資料：SA2#168–#173 共 6 份 TdocsByAgenda，位於 3GPP 官方 FTP 各會議資料夾（<https://www.3gpp.org/ftp/tsg_sa/WG2_Arch/>，TSGS2_168 至 TSGS2_173）
-- 範圍：工作項目 FS_Sensing_ARC 的全部 693 份會議文件（P-CR 643 份）
+- 範圍：工作項目 FS_Sensing_ARC 的全部 693 份會議文件（P-CR 643 份），以 TdocsByAgenda 為準；主席筆記另列 10 份，見 §1 第 5 點
 - 搭配圖表：[演進圖](https://cecefat.github.io/isac-lex/evolution.html)
 - 前置報告：[版本溯源報告](version-trace.md)（TR 版本層）
+- 更正：2026-10-27 依簡報包稽核，並以主席筆記交叉核對，更正多項數字，見 §7。
 
 ## 0. 結論先講
 
 1. **solution 之間沒有互相合併。** 39 個 solution 進場後各自獨立，沒有一個被併入另一個。真正的「併入」發生在進場**之前**和**之後**兩個時點：
-   - **進場前**：3 件 tdoc 正式併入（Rakuten/NIST → #3、ETRI → #22、Xiaomi 撤銷方案 → 既有 #11），另外 4 家公司自己的 KI#1 架構方案沒被處理，改去連署 #3。
-   - **進場後**：各公司把立場改寫成「結論提案」。每個 KI 每次會議收到 6～21 份，全部併入一份由 penholder 主筆的 baseline。
-2. **TR 內文凍結是程序造成的，不是沒人關心。** SA2#170–#172 一共收到 **58 件 solution 更新提案，全部 Not Handled**。被提更新最多的是 #6（8 件）、#16（6 件），而且多數出自非原提案方。
+   - **進場前**：3 件 tdoc 正式併入（Rakuten/NIST → #3、ETRI → #22、Xiaomi 撤銷方案 → 既有 #11），另外 4 家公司自己的 KI#1 架構方案沒被處理，也連署了 #3（其中 OPPO、ZTE 在 SA2#170 又提了自己的架構方案）。
+   - **進場後**：各公司把立場改寫成「結論提案」。SA2#171、#172 每個 KI 每次會議收到 7～19 份；除了 #171 的 KI#5、KI#6 整組延到下次，其餘都指定併入一份由 penholder 主筆的 baseline。
+2. **TR 內文凍結是程序造成的，不是沒人關心。** SA2#170–#172 一共收到 **59 件 solution 更新提案，全部 Not Handled**。被提更新最多的是 #16（6 件）、#6（5 件），而且多數出自非原提案方。
 3. **用公司數來算，AMF 之爭的熱度和本站先前用 solution 數算的方向相反。** 先前用「同立場 solution 數」得出經 AMF（6）多於直連（4）。改用 SA2#173 實際表態的公司數：最終修正案 S2-2601651 由 13 家連署，舉手表決「只走直連」支持 19、反對 3；經 AMF 的 baseline 只有 5 家提案方，另有 CEWiT 主張兩案並列（Tejas 同時出現在經 AMF 和兩案並列兩份文件上）。**更正：直連這方的支持遠多於經 AMF 那方，結果並不意外。**
 4. **最具辨識力的熱度訊號有四種：** penholder 歸屬、進場前的合併與改連署、第三方更新嘗試、SA2#173 的陣營分裂。結論文件的連署幾乎全員參與（12～25 家），單看連署數分不出強弱。
 
@@ -23,7 +24,8 @@
 2. 依說明欄的「Revision of」「Revised … to」「Merge into／Merged into」把 tdoc 串成家族（union-find）。一個家族＝原始提案＋各修訂版＋被併入的文件。
 3. 把 SA2#169、#170 核准的新方案 tdoc 對應到 TR v0.2.0、v0.3.0 的 Sol #1–#39。依據是標題相似度、TR 中 solution 的排列順序，以及後續「Update of solution #n」的提案方是否一致（例如 Sony 更新 #15、CEWiT 更新 #17、ETRI 以 "Solution 6.4" 更新 #4）。
    - 信心度中等的只有 **#16 ↔ Lenovo S2-2505881**。#16 的更新嘗試都來自他人（ZTE、Huawei、NTT DOCOMO），沒有原提案方自己的更新可以佐證。
-4. 「更新嘗試」= SA2#170–#173 標題含「Sol/Solution #n」或「Solution 6.n Update」的 P-CR。SA2#170 有 3 份 Toyota 的 #38 新方案文件標題含 "Update"，已排除。
+4. 「更新嘗試」= SA2#170–#173 標題含「Sol/Solution #n」或「Solution 6.n Update」的 P-CR。SA2#170 有 3 份 Toyota 的 #38 新方案文件標題含 "Update"，已排除。標題寫「Solution 6.n」的只算到 #n，一份文件只算一次。三次會議的件數（16／31／12）和主席筆記 "Solutions updates" 標題下的 Docs:= 相同。
+5. §3.3、§3.4 的分組與件數以主席筆記的議題標題為準（例如 "Solutions for KI#2 authorization/revocation"、"Conclusion for KI#5"）。只計首次提交，包含前次會議未處理、這次重新提交的文件，不含會內修訂版與撤回件。主席筆記共列有 10 份 TdocsByAgenda 沒有的文件，類型都是 DISCUSSION 或 LS。其中 Tejas 的 3 份（S2-2505039、S2-2505040、S2-2505623）實際是新方案及其修訂版，已補入 §2 和 §3.3；其餘 7 份是討論文件或 LS，不影響本報告的計數。
 
 ## 2. 39 solutions 與 tdoc 對照（含熱度指標）
 
@@ -40,13 +42,13 @@
 | 3 | S2-2506063 | Huawei、CAICT、China Mobile、ZTE、CATT、Deutsche Telekom、OPPO、China Telecom、KDDI、Rakuten Mobile | **10** | 3 | 3 | KPN、Toyota、Xiaomi |
 | 4 | S2-2505811 | ETRI | 1 | 2 | 3 | — |
 | 5 | S2-2506064 | NTT DOCOMO、Nokia | 2 | 3 | 2 | — |
-| 6 | S2-2505814 | InterDigital | 1 | 2 | **8** | ETRI、KPN、Lenovo、NTT DOCOMO、TNO |
+| 6 | S2-2505814 | InterDigital | 1 | 2 | **5** | KPN、Lenovo、NTT DOCOMO、TNO |
 | 7 | S2-2506065 | Intel、NTT DOCOMO | 2 | 3 | 0 | — |
 | 8 | S2-2506066 | China Mobile、Nokia、Lenovo、KDDI | 4 | 3 | 3 | — |
 | 9 | S2-2505874 | Samsung | 1 | 2 | 1 | — |
 | 10 | S2-2505876 | Toyota、BUPT | 2 | 3 | 0 | — |
 | 11 | S2-2505875（＋S2-2507810） | Xiaomi | 1 | 3 | 2 | Futurewei |
-| 12 | S2-2505877 | Tejas | 1 | 0 | 2 | — |
+| 12 | S2-2505877 | Tejas | 1 | 2※ | 2 | — |
 | 13 | S2-2505878 | vivo | 1 | 2 | 3 | — |
 | 14 | S2-2505879 | Futurewei | 1 | 2 | 0 | — |
 | 15 | S2-2506102 | Sony | 1 | 3 | 4 | China Mobile |
@@ -55,7 +57,7 @@
 | 18 | S2-2505883 | OPPO | 1 | 2 | 2 | — |
 | 19 | S2-2506060 | Apple | 1 | 2 | 0 | — |
 | 20 | S2-2505884 | China Mobile | 1 | 2 | 4 | Huawei |
-| 21 | S2-2507773 | CATT | 1 | 2 | 2 | — |
+| 21 | S2-2507773 | CATT | 1 | 2 | 1 | — |
 | 22 | S2-2507774 | vivo、ETRI | 2 | 2 | 2 | — |
 | 23 | S2-2507813 | Apple | 1 | 3 | 2 | Mitsubishi Electric |
 | 24 | S2-2507814 | Intel | 1 | 3 | 4 | KPN、TNO |
@@ -75,6 +77,8 @@
 | 38 | S2-2507809 | Toyota、BUPT | 2 | 2 | 1 | — |
 | 39 | S2-2507811 | Tejas | 1 | 2 | 0 | — |
 
+※ #12 的修訂次數依主席筆記：S2-2505040 → S2-2505623 → S2-2505877。前兩版 TdocsByAgenda 沒有列出。
+
 ## 3. 演進：哪些併入了哪個
 
 ### 3.1 進場前的正式合併（tdoc 說明欄明載）
@@ -87,69 +91,80 @@
 
 ### 3.2 進場前的改連署（推論，依據是同一會議的未處理紀錄與連署名單）
 
-SA2#169 有 9 份架構類新方案 Not Handled：OPPO S2-2504601、vivo S2-2504821、China Telecom S2-2504839、ZTE S2-2504950、Lenovo＋China Telecom S2-2505135、Samsung S2-2505215、CATT S2-2505397、Xiaomi S2-2505414、Nokia S2-2505431。其中 OPPO、China Telecom、ZTE、CATT 四家的名字出現在 #3 的連署名單上，等於放棄自己的方案、轉去支持 #3。vivo、Lenovo、Samsung、Xiaomi、Nokia 沒有連署 #3，其中 Lenovo、Nokia 改去連署 #8。這也解釋了為什麼 #3 的 SCF/SPF 用語最後成為 §8.1 P1 的骨架。
+SA2#169 主席筆記 "Solutions for KI#1 architectural" 組有 10 份新方案 Not Handled：OPPO S2-2504601、vivo S2-2504821、China Telecom S2-2504839、ZTE S2-2504950、Lenovo＋China Telecom S2-2505135、Samsung S2-2505215、CATT S2-2505397、Xiaomi S2-2505414、Nokia S2-2505431、Tejas S2-2505039（只列在主席筆記）。其中 OPPO、China Telecom、ZTE、CATT 四家的名字出現在 #3 的連署名單上，看起來是轉去支持 #3。但 OPPO、ZTE 在 SA2#170 又提了 KI#1 架構方案（OPPO 重提為 S2-2506285，ZTE 另提 S2-2506766），都沒被處理；對這兩家來說，連署 #3 不等於放棄自己的方案。vivo、Lenovo、Samsung、Xiaomi、Nokia、Tejas 沒有連署 #3：Lenovo、Nokia 改去連署 #8，Tejas 的 KI#2 方案另成 #12。這也解釋了為什麼 #3 的 SCF/SPF 用語最後成為 §8.1 P1 的骨架。
 
 ### 3.3 進場時的競爭（新方案首次提交，不含修訂版）
 
 | KI | SA2#169 有處理 | SA2#169 未處理 | SA2#170 有處理 | SA2#170 未處理 |
 |---|---|---|---|---|
-| KI#1 架構 | 4 | 6 | 1 | 3 |
-| KI#2 授權 | 4 | 5 | 2 | 2 |
-| KI#3 發現／選擇 | 5 | 8 | 0 | 0 |
-| KI#4 資料傳輸 | 1 | 7 | 5 | 4 |
-| KI#5 曝露 | 0 | 8 | 1 | 0 |
-| KI#6 參數配置 | 1 | 1 | 1 | 1 |
-| 跨 KI／未標 | 3 | 3 | 4 | 2 |
+| KI#1 架構 | 8 | 10 | 1 | 6 |
+| KI#2 授權 | 5 | 9 | 4 | 3 |
+| KI#3 發現／選擇 | 5 | 10 | 2 | 3 |
+| KI#4 資料傳輸 | 1 | 7 | 6 | 7 |
+| KI#5 曝露 | 1 | 11 | 7 | 3 |
+| KI#6 參數配置 | 1 | 1 | 2 | 1 |
+| 合計 | 21 | 48 | 22 | 23 |
 
-（「有處理」包含修訂、核准、併入、Noted。按標題中的 KI 編號歸類，所以各欄合計和核准數不會完全相等。）
+計數規則：
+- 分組依主席筆記的議題標題，例如 #169 的 "Solutions for KI#1 architectural"、#170 的 "New Solutions for KI#4 Sensing data collection"。標題寫了多個 KI 或沒寫 KI 的提案，也照筆記歸組；例如 Tejas 的 S2-2506708（後來的 #39）在 #170 列於 KI#3 組。
+- 各組件數和筆記標示的 Docs:= 相同，只有一處例外：#169 KI#2 組的 OPPO S2-2504602 標題是 "Key issue for WT#2"，不是新方案，表中不計。
+- 處理結果取 TdocsByAgenda 的決定欄。「有處理」包含修訂、核准、併入、Noted。ETRI 的 S2-2507089 決定欄是 Not Handled，說明欄寫 Merge into S2-2506609（見 §3.1），表中按決定欄算作未處理。
+- 核對 #169：有處理的 21 份中，Rakuten／NIST 併入 #3，其餘 20 份成為 #1–#20。
+- 核對 #170：有處理的 22 份中，2 份 Noted，Xiaomi 的 S2-2507436 寫入既有 #11，其餘 19 份成為 #21–#39。
+- SA2#171 另有 2 份新方案重提（vivo 的 KI#2 方案、Samsung 的 KI#4 方案），都沒被處理。此後再沒有新方案。
 
 讀法：
-- SA2#169 的 KI#5 有 8 份提案，一份都沒處理。所以曝露類 solution 幾乎全在 SA2#170 進場（#27–#33）。
-- KI#4 在 SA2#169 只處理 1 份（#18），SA2#170 才補上 5 份。資料直連路線（#21、#22、#25）是在第二批才成形的。
+- **曝露類（KI#5）幾乎全在第二批進場。** SA2#169 的 KI#5 有 12 份提案，只處理了 Apple 一份（後來的 #19）。未處理的 11 份裡，有 6 份在 SA2#170 重新提交後才被處理：Ericsson、Nokia、OPPO、China Mobile、CEWiT、ETRI。這 6 份加上 InterDigital 的新提案，成為 #27–#33。
+- **資料直連路線（KI#4）在第二批才成形。** SA2#169 只處理 1 份（OPPO，後來的 #18）。SA2#170 處理了 6 份，成為 #21–#26，直連的 #21、#22、#25 都在這一批。
 
 ### 3.4 進場後：solution 凍結，戰場移到結論提案
 
 | 會議 | solution 更新提案 | 處理結果 |
 |---|---|---|
 | SA2#170 | 16 | 全部 Not Handled |
-| SA2#171 | 30 | 全部 Not Handled |
+| SA2#171 | 31 | 全部 Not Handled |
 | SA2#172 | 12 | 全部 Not Handled |
+| 合計 | 59 | |
 
-同一時期的結論類提案（含暫定協議、結論、解決 EN）：
+同一時期的結論類提案（含暫定協議、結論、解決 EN；首次提交件數）：
 
 | 會議 | KI#1 | KI#2 | KI#3 | KI#4 | KI#5 | KI#6 |
 |---|---|---|---|---|---|---|
-| SA2#171 | 15 | 15 | 14 | 21 | 9 | 6 |
-| SA2#172 | 17 | 15 | 18 | 18 | 10 | 18 |
-| SA2#173 | 16 | — | — | — | — | — |
+| SA2#171 | 15 | 11 | 11 | 17 | 11 | 7 |
+| SA2#172 | 19 | 13 | 16 | 17 | 13 | 16 |
+| SA2#173 | 14 | — | — | — | — | — |
 
-每個 KI 都是「一份 baseline＋把其他提案全部併入」。penholder 和最終連署家數如下：
+（#171、#172 取主席筆記各 KI 標題下的 Docs:=。#173 的筆記沒有分 KI 標題，14 是當次 P-CR 的首次提交數，全部針對 KI#1。）
+
+除了 #171 的 KI#5、KI#6，每個 KI 都是「一份 baseline＋其他提案指定併入」：#171 的決定欄寫 Merged；#172 的說明欄寫 Merge into，決定欄為 Not Handled。penholder 和最終連署家數如下：
 
 | 會議 | KI | 核准 tdoc | penholder | 連署家數 |
 |---|---|---|---|---|
 | #171 | KI#1 暫定 | S2-2509659 | Xiaomi（rapporteur） | 21 |
-| #171 | KI#2 暫定 | S2-2509824 | Huawei | 24 |
-| #171 | KI#3 暫定 | S2-2509825 | Qualcomm | 25 |
-| #171 | KI#4 暫定 | S2-2509826 | Ericsson | 17 |
+| #171 | KI#2 暫定 | S2-2509824 | Huawei | 22 |
+| #171 | KI#3 暫定 | S2-2509825 | Qualcomm | 24+ |
+| #171 | KI#4 暫定 | S2-2509826 | Ericsson | 16 |
 | #171 | KI#5、KI#6 | — | 全部 Not Handled，延到 #172 | — |
-| #172 | KI#1 結論 | S2-2511301 | Xiaomi | 12 |
-| #172 | KI#2 結論 | S2-2511042 | vivo | 19 |
+| #172 | KI#1 結論 | S2-2511301 | Xiaomi | 12+ |
+| #172 | KI#2 結論 | S2-2511042 | vivo | 18 |
 | #172 | KI#3 結論 | S2-2511040 | LG Electronics | 25 |
 | #172 | KI#4 結論 | S2-2511044 | ZTE | 17 |
-| #172 | KI#5 結論 | S2-2511049 | Nokia | 24 |
-| #172 | KI#6 結論 | S2-2511041 | Samsung | 21 |
-| #173 | KI#1 修正（P4a） | S2-2601651 | OPPO | 9 |
+| #172 | KI#5 結論 | S2-2511049 | Nokia | 23 |
+| #172 | KI#6 結論 | S2-2511041 | Samsung | 19 |
+| #173 | KI#1 修正（P4a） | S2-2601651 | OPPO | 13 |
+
+（連署家數＝去重後的公司數，Huawei／HiSilicon、Nokia／NSB、CMCC／China Mobile 各算一家。「+」表示 TdocsByAgenda 的提案方欄位被截斷，實際至少這麼多家。#173 的 13 家取自 S2-2601651 原文，TdocsByAgenda 只列 9 個名稱。）
 
 ## 4. 真熱度：四種有辨識力的訊號
 
 ### 4.1 進場時的聚集度
 
-#3 有 10 家連署（含 4 家改連署、1 家併入），是 39 個裡唯一形成聯盟的 solution。其次是 #8（China Mobile、Nokia、Lenovo、KDDI）和 #36（Lenovo、Futurewei、China Telecom、Toyota），各 4 家。其餘 36 個是 1～2 家的單獨或雙家提案。
+#3 有 10 家連署（其中 4 家自己的架構方案沒被處理，1 家是併入），是 39 個裡唯一形成聯盟的 solution。其次是 #8（China Mobile、Nokia、Lenovo、KDDI）和 #36（Lenovo、Futurewei、China Telecom、Toyota），各 4 家。其餘 36 個是 1～2 家的單獨或雙家提案。
 
 ### 4.2 第三方更新嘗試（別人想改你的方案）
 
-- **#6（依服務區的 Sensing NF，InterDigital）**：8 件，5 家第三方（ETRI、KPN、Lenovo、NTT DOCOMO、TNO），主題都是 SE 選擇。
-- **#16（SE 向 SF 註冊，Lenovo）**：6 件，來自 Huawei、NTT DOCOMO、ZTE，主題是 SE 選擇準則。
+- **#16（SE 向 SF 註冊，Lenovo）**：6 件，全部來自第三方（Huawei、NTT DOCOMO、ZTE 各 2 件），主題是 SE 選擇準則。
+- **#6（依服務區的 Sensing NF，InterDigital）**：5 件，其中 2 件是 InterDigital 自己提的；另 3 件來自 4 家第三方（Lenovo；KPN、TNO；KPN、TNO、NTT DOCOMO）。標題寫明主題的 2 件（KPN、TNO）都是 SE 選擇。
 - **#3**：Toyota、KPN、Xiaomi 想改 SCF/SPF 切分的細節。
 
 這三個集中在「SF 怎麼選 gNB、SE 資訊從哪來」，正好是 §8.3 NOTE 1、NOTE 2 留成 FFS 的地方。熱度高但沒有收斂，是一個值得在 Rel-20 規範階段持續追蹤的爭點（推論）。
@@ -171,7 +186,7 @@ SA2#169 有 9 份架構類新方案 Not Handled：OPPO S2-2504601、vivo S2-2504
 - **公司數**：直連 13 家（S2-2601651 最終連署：OPPO、Huawei、Xiaomi、LGE、China Mobile、AT&T、ZTE、Apple、vivo、Ericsson、Qualcomm、CATT、China Telecom），經 AMF 5 家，兩案並列 2 家（Tejas 兩邊都有）。舉手表決「只走直連」為支持 19、不支持 6、反對 3。
 - **和 solution 的對應**：經 AMF 陣營正好是落敗 solution 的提案方：#5（NTT DOCOMO、Nokia）、#39 與 #12（Tejas）、#35（Samsung）、#7（共同提案方 NTT DOCOMO）。直連陣營則包括 #1 的提案方 Qualcomm，以及 #37 的提案方 Huawei。
 - **程序面**：兩個 baseline 都沒被處理，最後由 OPPO 的修正文件經 email 核准定案。所以 P4a 不是「直連 baseline 勝出」，而是另一份多方連署的修正案勝出。實際的決定機制是一次舉手表決（show of hands）之後宣告的 Working Agreement，見 §6。
-- **補充（主席筆記）**：email 討論中，vivo、Ericsson、Qualcomm、CATT 也陸續要求連署，r04 加入 5 家連署（內容不變）。TdocsByAgenda 列的 9 家沒有反映 r04 的增列。S2-2601651 原文的提案方共 14 個名稱（Huawei 與 HiSilicon 算一家，共 13 家），已核對原文。舉手表決的票數見 [爭點技術路線分析](dispute-analysis.md) §1。
+- **補充（主席筆記）**：email 討論中，vivo、Ericsson、Qualcomm、CATT 也陸續要求連署，r04 加入 5 家連署（內容不變）。TdocsByAgenda 只列 9 個名稱（Huawei 與 HiSilicon 合算，共 8 家），沒有反映 r04 的增列。S2-2601651 原文的提案方共 14 個名稱（Huawei 與 HiSilicon 算一家，共 13 家），已核對原文。舉手表決的票數見 [爭點技術路線分析](dispute-analysis.md) §1。
 
 ## 5. 限制與下一步
 
@@ -262,3 +277,22 @@ SA2#169 有 9 份架構類新方案 Not Handled：OPPO S2-2504601、vivo S2-2504
 | 分析／儲存類 NF（#7 的 NWDAF/ADRF、#12、#26、#31、#38） | #169 主席刪除 NWDAF/ADRF 儲存描述；#171 P2 不設專用儲存 NF | SA2#169 → #171 |
 | 多個獨立 NF、閘道型 NF（#9、#10、#19、#24、#34） | #171 P1 單一 SF；#172 P5 一個請求只選一個 SF | SA2#171 → #172 |
 | 控制信令經 AMF（#5、#39、#35b；#13、#17 的 AMF 發現） | #172 掛起成 EN；#173 舉手表決後宣告只走 Option A | SA2#172 → #173 |
+
+---
+
+## 7. 更正紀錄（2026-10-27）
+
+製作內部簡報包時重新核對了一次，之後再用主席筆記的分組標題與 Docs:= 做第二種算法交叉檢查。更正如下：
+
+| 位置 | 原內容 | 更正後 | 原因 |
+|---|---|---|---|
+| §0、§2、§4.2：#6 的更新件數 | 8 件，5 家第三方（含 ETRI） | 5 件，4 家第三方 | ETRI 的 "Solution 6.4" 是更新 #4，原算法把它重複算進 #6 |
+| §2：#21 的更新件數 | 2 | 1 | 同一份文件算了兩次 |
+| §2：#12 的修訂次數 | 0 | 2 | 前兩版只列在主席筆記 |
+| §0、§3.4：solution 更新提案 | 58（#171 為 30） | 59（#171 為 31） | 按文件去重後重算，與主席筆記 "Solutions updates" 的 Docs:= 一致 |
+| §3.3：各 KI 新方案處理表 | 未處理 38／12，有處理 18／14 | 未處理 48／23，有處理 21／22 | 原算法漏算三類：重新提交的提案、標題沒寫 solution 的提案、只列在主席筆記的 Tejas 文件。分組改依主席筆記 |
+| §3.2：未處理的架構方案 | 9 份 | 10 份 | 補上 Tejas S2-2505039 |
+| §0、§3.2：連署 #3 的解讀 | 「等於放棄自己的方案」 | OPPO、ZTE 在 #170 仍提出自己的 KI#1 架構方案 | 補算重新提交的提案後發現 |
+| §0、§3.4：結論類提案件數 | 6～21 份（例：#171 KI#4 為 21） | 7～19 份（例：#171 KI#4 為 17） | 原表把會內修訂版也算進去，改用主席筆記的 Docs:= |
+| §3.4：penholder 文件的連署家數 | 24、25、17、12、19、24、21、9 | 22、24+、16、12+、18、23、19、13 | 改為去重後的公司數；「+」表示提案方欄位被截斷；#173 依 S2-2601651 原文 |
+| §4.4：TdocsByAgenda 的列名 | 9 家 | 9 個名稱（8 家） | Huawei 與 HiSilicon 合算一家 |

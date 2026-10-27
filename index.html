@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="3GPP 5G-A 感知（ISAC）架構研究 TR 23.700-14 的白話圖解：39 種設計、8 個爭論、從 2025 年 5 月到 2026 年 2 月怎麼收斂。附專業版時序圖、演進圖與六份分析報告。獨立分析，非 3GPP 出版品，不是法律意見。">
+<meta name="description" content="3GPP 5G-A 感知（ISAC）架構研究 TR 23.700-14 的白話圖解：39 種設計、8 個爭論、從 2025 年 5 月到 2026 年 2 月怎麼收斂。附專業版時序圖與演進圖。獨立分析，非 3GPP 出版品，不是法律意見。">
 <title>ISAC 感知標準演進</title>
 <style>
 .site-nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
@@ -13,7 +13,6 @@
 .site-nav a:hover,.site-nav a[aria-current]{color:var(--blue)}
 .site-foot{border-top:1px solid var(--line);margin-top:40px;padding-top:16px;font-size:13px;color:var(--ink-3);line-height:1.7}
 .site-foot p{margin:6px 0}
-.reports li{margin:6px 0}
 </style>
 <style>
 :root{--bg:#f9f9f7;--surface:#ffffff;--surface-2:#f3f2ee;--ink:#0b0b0b;--ink-2:#52514e;--ink-3:#898781;--line:rgba(11,11,11,.12);--blue:#2a78d6;--blue-soft:#cde2fb;--aqua:#1baf7a;--yellow:#eda100;--orange:#eb6834;--gray:#b4b2a9;--on:#ffffff}
@@ -91,8 +90,6 @@ a{color:var(--blue)}
 <a href="index.html" aria-current="page">白話圖解</a>
 <a href="timeline.html">時序熱度圖</a>
 <a href="evolution.html">演進圖</a>
-<a href="#reports">專業報告</a>
-<a href="https://github.com/CeceFat/isac-lex">GitHub</a>
 </div></nav>
 <div class="wrap">
 
@@ -174,8 +171,8 @@ a{color:var(--blue)}
 <h2>時間怎麼走</h2>
 <div class="miles">
 <div class="mile"><b>2025 年 4 月</b>　定下要研究的 6 個題目。</div>
-<div class="mile"><b>2025 年 5 月</b>　第一批 20 種設計上桌；另有 38 份提案沒排到討論。</div>
-<div class="mile" style="--dot:var(--orange)"><b>2025 年 8 月</b>　第二批 19 種設計上桌；研究範圍縮小為「只讓基地台當雷達」。</div>
+<div class="mile"><b>2025 年 5 月</b>　第一批 20 種設計上桌；另有 48 份新方案提案沒排到討論。</div>
+<div class="mile" style="--dot:var(--orange)"><b>2025 年 8 月</b>　第二批 19 種設計上桌（另有 23 份沒排到）；研究範圍縮小為「只讓基地台當雷達」。</div>
 <div class="mile interim"><b>2025 年 10 月</b>　第一批共識：只設一個指揮中心、不設專用資料庫、只有基地台當雷達、外部委託要過兩道審核。</div>
 <div class="mile" style="--dot:var(--blue)"><b>2025 年 11 月</b>　大部分題目定案；只有「要不要經總機」吵不完，先擱置。</div>
 <div class="mile" style="--dot:var(--blue)"><b>2026 年 2 月</b>　舉手表決：直接拉專線，不經總機。研究結束。</div>
@@ -345,17 +342,6 @@ a{color:var(--blue)}
 <li>看點：第 3 號設計（華為等 10 家共同提出）一路走到最後的共識；「經總機」陣營的第 5、39 號在 2026 年 2 月落敗</li>
 </ul>
 </div>
-
-<h2 id="reports">專業報告</h2>
-<p class="muted">以下六份報告是本頁的依據，在 GitHub 上以 Markdown 呈現。每一則英文引文都附 TR 段落座標，並在本機對原文逐字核對。</p>
-<ul class="reports">
-<li><a href="https://github.com/CeceFat/isac-lex/blob/main/reports/plain-language.md">白話說明</a>：本頁的文字版，八個爭論逐一說明。</li>
-<li><a href="https://github.com/CeceFat/isac-lex/blob/main/reports/solution-differences.md">39 方案技術差異精析</a>：39 個方案逐一拆到要件，§8 每一條結論追到原文出處。</li>
-<li><a href="https://github.com/CeceFat/isac-lex/blob/main/reports/dispute-analysis.md">爭點技術路線分析</a>：七個爭點的技術取捨，以及 2026 年 2 月舉手表決的票數與各陣營論據。</li>
-<li><a href="https://github.com/CeceFat/isac-lex/blob/main/reports/tdoc-heat-and-evolution.md">tdoc 層熱度與演進分析</a>：SA2 六次會議 693 份會議文件與主席筆記，重建方案合併、連署與表決過程。</li>
-<li><a href="https://github.com/CeceFat/isac-lex/blob/main/reports/version-trace.md">版本溯源報告</a>：研究報告 10 個版本的逐版比對。</li>
-<li><a href="https://github.com/CeceFat/isac-lex/blob/main/reports/80211bf-vs-cellular-isac.md">802.11bf 對 cellular ISAC 的啟發與影響</a>：Wi-Fi 感知標準和手機網路感知的逐項對照。</li>
-</ul>
 
 <h2>名詞對照</h2>
 <table class="gl">
